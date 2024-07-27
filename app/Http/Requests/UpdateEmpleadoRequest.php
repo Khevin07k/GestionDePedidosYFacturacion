@@ -11,7 +11,7 @@ class UpdateEmpleadoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class UpdateEmpleadoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'Nombre' => 'required',
+            'Apellido' => 'required',
+            'Ci' => 'required|numeric',
+            'Telefono' => 'required|numeric',
+            'FechaContratacion' => 'required',
+            'Puesto' => 'required',
+            'RestauranteId' => 'required',
+            'Email' => 'required|email',
+
         ];
     }
 }

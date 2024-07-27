@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Sistema de Ventas</b>',
+    'logo' => '<b>Restaurante</b>LTE',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -126,15 +126,15 @@ return [
     | User Menu
     |--------------------------------------------------------------------------
     |
-    | Here you can activate and change the admin menu.
+    | Here you can activate and change the user menu.
     |
-    | For detailed instructions you can look the admin menu section here:
+    | For detailed instructions you can look the user menu section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
@@ -292,7 +292,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
-
+@include ('plugins.iconsBootstrap'),
     'menu' => [
         // Navbar items:
         [
@@ -304,57 +304,105 @@ return [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-        [
-            'text' => '',
-            'icon' => 'fas fa-admin',
-            'url' => '/login',
-            'topnav_right' => true,
-        ],
 
         // Sidebar items:
-//        ['header' => 'account_settings'],
+        /*[
+            'type' => 'sidebar-menu-search',
+            'text' => 'search',
+        ],*/
+//        [
+//            'text' => 'blog',
+//            'url' => 'admin/blog',
+//            'can' => 'manage-blog',
+//        ],
         [
-            'text' => 'Admistrador',
-            'icon' => 'fas fa-fw fa-user',
-            'submenu' => [
-                [
-                    'text' => 'Usuario',
-                    'url' => 'usuario',
-                ],
-                [
-                    'text' => 'Perfil',
-                    'url' => 'perfil',
-                ],
-                [
-                    'text' => 'Empleado',
-                    'url' => 'empleado',
-                ],
-            ],
+            'text' => 'Restaurante',
+            'url' => 'restaurante',
+            'icon' => 'fas fa-fw fa-utensils',
+//            'label' => 4,
+//            'label_color' => 'success',
         ],
-//        ['header' => 'labels'],
+        ['header' => 'ADMINISTRACION'],
         [
-            'text' => 'Ventas',
-            'icon' => 'fas fa-shopping-cart ',
+            'text' => 'Usuario',
+            'url' => 'usuario',
+            'icon' => 'fas fa-users',
+        ],
+        [
+            'text' => 'Pedidos',
+            'url' => 'admin/settings',
+            'icon' => 'fas fa-fw fa-tag',
+        ],
+        [
+            'text' => 'Menu',
+            'url' => 'menu',
+            'icon' => 'fas fa-fw fa-list',
+        ],
+        [
+            'text' => 'Empleados',
+            'url' => 'empleado',
+            'icon' => 'bi bi-person-vcard',
+            /*'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'url' => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'url' => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'level_two',
+                            'url' => '#',
+                        ],
+                        [
+                            'text' => 'level_two',
+                            'url' => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'level_three',
+                                    'url' => '#',
+                                ],
+                                [
+                                    'text' => 'level_three',
+                                    'url' => '#',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'level_one',
+                    'url' => '#',
+                ],
+            ],*/
+        ],
+        [
+            'text' => 'Pedidos',
+            'url' => 'admin/settings',
+            'icon' => 'fas fa-fw fa-bars',
+        ],
+        [
+            'text' => 'Cliente',
+            'url' => 'clientes',
+            'icon' => 'bi bi-person',
+        ],
+        /*['header' => 'labels'],
+        [
+            'text' => 'important',
+            'icon_color' => 'red',
             'url' => '#',
-            'submenu'=>[
-                [
-                    'text' => 'Menu',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'Cliente',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'Pedido',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'Factura',
-                    'url' => '#',
-                ],
-            ],
         ],
+        [
+            'text' => 'warning',
+            'icon_color' => 'yellow',
+            'url' => '#',
+        ],
+        [
+            'text' => 'information',
+            'icon_color' => 'cyan',
+            'url' => '#',
+        ],*/
     ],
 
     /*

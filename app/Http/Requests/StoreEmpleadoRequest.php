@@ -11,7 +11,7 @@ class StoreEmpleadoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,22 @@ class StoreEmpleadoRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'Nombre' => 'required',
+            'Apellido' => 'required',
+            'Ci' => 'required|max:9',
+            'Telefono' => 'required',
+            'FechaContratacion' => 'required',
+            'Puesto' => 'required',
+            'RestauranteId' => 'required',
+            'Email' => 'required|email|unique:empleados,Email',
             //
+        ];
+    }
+    public function messages(): array
+    {
+        return[
+            'FechaContratacion.required' => 'El campo Fecha de Contratación es obligatorio.',
+//            'FechaContratacion.date' => 'El campo Fecha de Contratación debe ser una fecha válida.',
         ];
     }
 }

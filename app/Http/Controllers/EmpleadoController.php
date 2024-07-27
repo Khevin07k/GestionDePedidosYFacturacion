@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Empleado;
 use App\Http\Requests\StoreEmpleadoRequest;
 use App\Http\Requests\UpdateEmpleadoRequest;
+use App\Models\Restaurante;
+use Carbon\Carbon;
 
 class EmpleadoController extends Controller
 {
@@ -13,15 +15,19 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        return view('admin.empleado');
+        $empleados = Empleado::all();
+        $restaurante = Restaurante::all();
+        return view('admin.empleado.index', ['empleados' => $empleados, 'restaurantes' => $restaurante]);
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        $restaurante = Restaurante::all();
+        return view('admin.empleado.create', compact('restaurante'));
     }
 
     /**
@@ -29,7 +35,17 @@ class EmpleadoController extends Controller
      */
     public function store(StoreEmpleadoRequest $request)
     {
-        //
+        $datosEmpleado = request()->except('_token');
+        $year =  date('Y', strtotime($datosEmpleado['FechaContratacion']));
+        $mes =  date('m', strtotime($datosEmpleado['FechaContratacion']));
+        $day =  date('d', strtotime($datosEmpleado['FechaContratacion']));
+//        $fechaContratacion = Carbon::createFromFormat('d/m/Y', $datosEmpleado['FechaContratacion'])->format('Y-m-d');
+//        return dd($fechaContratacion);
+        $datosEmpleado['FechaContratacion'] =$year.'-'.$mes.'-'.$day;
+//        $datosEmpleado['FechaContratacion'] = $fechaContratacion;
+        Empleado::insert($datosEmpleado);
+        return redirect()->route('empleado.index')->withErrors($request->messages());
+
     }
 
     /**
@@ -45,15 +61,18 @@ class EmpleadoController extends Controller
      */
     public function edit(Empleado $empleado)
     {
-        //
+        $empleado = Empleado::findOrFail($empleado['id']);
+        return view('admin.empleado.edit', compact('empleado'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEmpleadoRequest $request, Empleado $empleado)
+    public function update(UpdateEmpleadoRequest $request, $id)
     {
-        //
+        $datosEmpleado = request()->except(['_token', '_method']);
+        Empleado::where('id', '=', $id)->update($datosEmpleado);
+        return redirect()->route('empleado.index');
     }
 
     /**
@@ -61,6 +80,8 @@ class EmpleadoController extends Controller
      */
     public function destroy(Empleado $empleado)
     {
-        //
+        $empleado = Empleado::findOrFail($empleado['id']);
+        $empleado->delete();
+        return redirect()->route('empleado.index');
     }
 }
