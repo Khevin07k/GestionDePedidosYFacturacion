@@ -292,7 +292,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
-@include ('plugins.iconsBootstrap'),
+//    @include('plugins.iconsBootstrap'),
     'menu' => [
         // Navbar items:
         [
@@ -319,14 +319,18 @@ return [
             'text' => 'Restaurante',
             'url' => 'restaurante',
             'icon' => 'fas fa-fw fa-utensils',
+//            'can' => 'auth',
 //            'label' => 4,
 //            'label_color' => 'success',
         ],
-        ['header' => 'ADMINISTRACION'],
+        ['header' => 'ADMINISTRACION',
+//            'can' => 'auth',
+        ],
         [
             'text' => 'Usuario',
             'url' => 'usuario',
             'icon' => 'fas fa-users',
+//            'can' => 'auth',
         ],
         [
             'text' => 'Pedidos',
@@ -342,6 +346,7 @@ return [
             'text' => 'Empleados',
             'url' => 'empleado',
             'icon' => 'bi bi-person-vcard',
+//            'can' => 'auth',
             /*'submenu' => [
                 [
                     'text' => 'level_one',
@@ -378,14 +383,10 @@ return [
             ],*/
         ],
         [
-            'text' => 'Pedidos',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-bars',
-        ],
-        [
             'text' => 'Cliente',
             'url' => 'clientes',
             'icon' => 'bi bi-person',
+//            'can' => 'auth',
         ],
         /*['header' => 'labels'],
         [
@@ -509,6 +510,18 @@ return [
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
                 ],
             ],
+        ],
+
+        'bootstrap-icons' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css',
+                ],
+            ],
+
         ],
     ],
 

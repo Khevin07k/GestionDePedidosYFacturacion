@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 //use Nette\Utils\Image;
 
 class MenuController extends Controller
@@ -39,6 +40,8 @@ class MenuController extends Controller
             $request->file('FotoMenu')->move($destinationPath, $filename);
             $datosMenu['FotoMenu'] = $destinationPath . $filename;
 
+        }else{
+            $datosMenu['FotoMenu'] = 'images/sin_foto.jpg';
         }
         Menu::insert($datosMenu);
         return redirect()->route('menu.index');
@@ -93,5 +96,11 @@ class MenuController extends Controller
         $menu = Menu::findOrFail($menu['$id']);
         $menu->delete();
         return redirect()->route('menu.index');
+    }
+    public function generarReportePdf()
+    {
+        $menus = Menu::all();
+        $pdf = PDF::loadView('pdf.menus',compact('menus'));
+        return $pdf->download('carta.pdf');
     }
 }
