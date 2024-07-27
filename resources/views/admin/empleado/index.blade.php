@@ -4,7 +4,6 @@
 
 @section('content_header')
     <h1>Lista Empleados</h1>
-    @include('plugins.iconsBootstrap')
 @stop
 @section('content')
     <a href="{{route('empleado.create')}}" class="btn btn-primary" role="button">Nuevo Empleado</a>
@@ -39,9 +38,9 @@
 
                 <td>
                     <div class="mb-3">
-                        <a href="/empleado/{{$empleado->id}}/edit" role="button" class="btn btn-primary"> Editar</a>
+                        <a href="{{route('empleado.edit',$empleado->id)}}" role="button" class="btn btn-primary"> Editar</a>
                     </div>
-                    <form action="/empleado/{{$empleado->id}}" method="post">
+                    <form action="{{route('empleado.destroy',$empleado->id)}}" method="post">
                         @csrf
                         @method('DELETE')
                         <input type="submit" class="btn btn-danger" value="Eliminar">

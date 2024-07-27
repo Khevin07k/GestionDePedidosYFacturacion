@@ -6,8 +6,11 @@
 @stop
 
 @section('content')
-
-    <a href="{{ route('menu.create') }}" class="btn btn-primary" role="button">Nuevo Menu</a>
+    @auth
+        <a href="{{ route('menu.create') }}" class="btn btn-primary" role="button">Nuevo Menu</a>
+    @else
+        <div class="text-bg-danger">Nesecitas iniciar seccion para agregar menus</div>
+    @endauth
 
     <br>
     <br>
@@ -32,9 +35,9 @@
             <td>{{$menu->Precio}} Bs</td>
             <td>
                 <div class="mb-3">
-                    <a href="/menu/{{$menu->id}}/edit" role="button" class="btn btn-primary"> Editar</a>
+                    <a href="{{route('menu.edit',$menu->id) }}" role="button" class="btn btn-primary"> Editar</a>
                 </div>
-                <form action="/menu/{{$menu->id}}" method="post">
+                <form action="{{route('menu.destroy',$menu->id)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <input type="submit" class="btn btn-danger" value="Eliminar">

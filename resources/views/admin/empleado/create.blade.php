@@ -13,7 +13,7 @@
         <label for="">Nombre</label>
         <div class="input-group mb-3">
             <span class="input-group-text">
-                <i class="bi-person-circle"></i>
+                <i class="bi bi-person-circle"></i>
             </span>
             <input type="text" class="form-control" name="Nombre" placeholder="Nombre">
         </div>

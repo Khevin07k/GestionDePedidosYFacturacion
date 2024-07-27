@@ -35,9 +35,9 @@
                 <td>{{$restaurante->Email}}</td>
                 <td>
                     <div class="mb-3">
-                        <a href="/restautante/{{$restaurante->id}}/edit" role="button" class="btn btn-primary"> Editar</a>
+                        <a href="{{route('restaurante.edit',$restaurante->id)}}" role="button" class="btn btn-primary"> Editar</a>
                     </div>
-                    <form action="/restaurante/{{$restaurante->id}}" method="post">
+                    <form action="{{route('restaurante.edit',$restaurante->id)}}" method="post">
                         @csrf
                         @method('DELETE')
                         <input type="submit" class="btn btn-danger" value="Eliminar">

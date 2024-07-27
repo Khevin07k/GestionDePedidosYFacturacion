@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 //
-Route::resource('/menu', MenuController::class);
+Route::middleware(['auth'])->group(function () {
 Route::resource('/clientes',ClienteController ::class);
 Route::resource('/restaurante',RestauranteController::class);
 Route::resource('/empleado', EmpleadoController::class);
+});
+Route::resource('/menu', MenuController::class);
